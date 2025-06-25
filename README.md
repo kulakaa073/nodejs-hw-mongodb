@@ -7,3 +7,6 @@ How to:
    `"express": "^4.18.2"`
 2. Run in your terminal:
    `npm install express@^4.18.2`
+
+Note: remember to use respective command from `package.json/scripts` on deploying to [render](http://render.com/),
+`npm start` with `start` script running `"nodemon src/index.js"` in this example
