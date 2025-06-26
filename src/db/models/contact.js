@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+import { Schema, model } from 'mongoose';
 //    name - string, required
 /* phoneNumber - string, required
 email - string
@@ -24,6 +24,4 @@ const contactSchema = new Schema(
   },
 );
 
-const ContactsCollection = model('contacts', contactSchema);
-
-module.exports = { ContactsCollection };
+export const ContactsCollection = model('contacts', contactSchema);

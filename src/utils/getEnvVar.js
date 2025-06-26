@@ -1,10 +1,8 @@
-// src/utils/getEnvVar.js
-
-const dotenv = require('dotenv');
+import dotenv from 'dotenv';
 
 dotenv.config();
 
-const getEnvVar = (name, defaultValue) => {
+export const getEnvVar = (name, defaultValue) => {
   const value = process.env[name];
 
   if (value) return value;
@@ -13,5 +11,3 @@ const getEnvVar = (name, defaultValue) => {
 
   throw new Error(`Missing: process.env['${name}'].`);
 };
-
-module.exports = { getEnvVar };

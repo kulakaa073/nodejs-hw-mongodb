@@ -1,16 +1,11 @@
-const { ContactsCollection } = require('../db/models/contact');
+import { ContactsCollection } from '../db/models/contact.js';
 
-const getAllContacts = async () => {
+export const getAllContacts = async () => {
   const contacts = await ContactsCollection.find();
   return contacts;
 };
 
-const getContactById = async (contactId) => {
+export const getContactById = async (contactId) => {
   const contact = await ContactsCollection.findById(contactId);
   return contact;
-};
-
-module.exports = {
-  getAllContacts,
-  getContactById,
 };

@@ -1,12 +1,12 @@
-const express = require('express');
-const pino = require('pino-http');
-const cors = require('cors');
-const { getEnvVar } = require('./utils/getEnvVar');
-const { getAllContacts, getContactById } = require('./services/contacts');
+import express from 'express';
+import pino from 'pino-http';
+import cors from 'cors';
+import { getEnvVar } from './utils/getEnvVar.js';
+import { getAllContacts, getContactById } from './services/contacts.js';
 
 const PORT = getEnvVar('PORT', 3000);
 
-const startServer = () => {
+export const startServer = () => {
   const app = express();
   app.use(express.json());
   app.use(cors());
@@ -71,5 +71,3 @@ const startServer = () => {
     console.log(`Server is running on port ${PORT}`);
   });
 };
-
-module.exports = { startServer };
