@@ -10,3 +10,18 @@ How to:
 
 Note: remember to use respective command from `package.json/scripts` on deploying to [render](http://render.com/),
 `npm start` with `start` script running `"nodemon src/index.js"` in this example
+
+Validation:
+name - string, required, min = 3, max = 20
+phoneNumber - string, required, min = 3, max = 20
+email - string
+isFavourite - boolean, default false
+contactType - string, enum('work', 'home', 'personal'), required
+
+Filtering:
+isFavourite: boolean
+type: string, ['work', 'home', 'personal']
+
+Sorting:
+sortBy: string, ['\_id', 'name', 'phoneNumber', 'email', 'isFavourite', 'contactType', 'createdAt', 'updatedAt',], default: '\_id'
+sortOrder: string, ['asc', 'desc'], default: 'asc'
