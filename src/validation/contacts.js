@@ -18,15 +18,14 @@ export const createContactSchema = Joi.object({
   contactType: Joi.string().valid('work', 'home', 'personal').required(),
 });
 
-// Keep required() because schema can accept empty strings to "delete" fields
 export const updateContactSchema = Joi.object({
-  name: Joi.string().min(3).max(20).required().messages({
+  name: Joi.string().min(3).max(20).messages({
     'string.base': 'Name should be a string',
     'string.min': 'Name should have at least {#limit} characters',
     'string.max': 'Name should have at most {#limit} characters',
     'any.required': 'Name is required',
   }),
-  phoneNumber: Joi.string().min(3).max(20).required().messages({
+  phoneNumber: Joi.string().min(3).max(20).messages({
     'string.base': 'Phone number should be a string',
     'string.min': 'Phone number should have at least {#limit} characters',
     'string.max': 'Phone number should have at most {#limit} characters',
@@ -34,5 +33,5 @@ export const updateContactSchema = Joi.object({
   }),
   email: Joi.string().email(),
   isFavourite: Joi.boolean(),
-  contactType: Joi.string().valid('work', 'home', 'personal').required(),
+  contactType: Joi.string().valid('work', 'home', 'personal'),
 });
