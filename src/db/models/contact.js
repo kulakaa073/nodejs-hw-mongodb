@@ -7,6 +7,7 @@ contactType - string, enum(’work’, ‘home’, ‘personal’), required, de
 
 const contactSchema = new Schema(
   {
+    userId: { type: Schema.Types.ObjectId, ref: 'users', required: true },
     name: { type: String, required: true },
     phoneNumber: { type: String, required: true },
     email: { type: String },
