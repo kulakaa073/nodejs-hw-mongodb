@@ -17,6 +17,7 @@ phoneNumber - string, required, min = 3, max = 20
 email - string
 isFavourite - boolean, default false
 contactType - string, enum('work', 'home', 'personal'), required
+photo - string
 
 Filtering:
 isFavourite: boolean
