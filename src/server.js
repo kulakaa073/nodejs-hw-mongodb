@@ -7,8 +7,10 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 import cookieParser from 'cookie-parser';
 import { UPLOAD_DIR } from './constants/index.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 const PORT = getEnvVar('PORT', 3000);
+const HOST = getEnvVar('APP_DOMAIN');
 
 export const startServer = () => {
   const app = express();
@@ -25,12 +27,16 @@ export const startServer = () => {
   );
 
   app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Welcome to MongoDB test API!' });
+    res.status(200).json({
+      message:
+        'Welcome to MongoDB test API! OpenAPI documentation is available at http://localhost:3000/api-docs',
+    });
   });
 
-  app.use(indexRouter);
-
   app.use('/uploads', express.static(UPLOAD_DIR));
+  app.use('/api-docs', swaggerDocs());
+
+  app.use(indexRouter);
 
   app.use('*', notFoundHandler);
 
@@ -38,5 +44,6 @@ export const startServer = () => {
 
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
+    console.log(`OpenAPI documentation is available at ${HOST}/api-docs`);
   });
 };

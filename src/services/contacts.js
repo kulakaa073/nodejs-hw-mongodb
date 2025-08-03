@@ -21,8 +21,15 @@ export const getAllContacts = async ({
   if (filter.isFavourite) {
     searchFilter.isFavourite = filter.isFavourite;
   }
-
-  console.log('Search filter:', searchFilter);
+  if (filter.name) {
+    searchFilter.name = { $regex: filter.name, $options: 'i' };
+  }
+  if (filter.phoneNumber) {
+    searchFilter.phoneNumber = { $regex: filter.phoneNumber, $options: 'i' };
+  }
+  if (filter.email) {
+    searchFilter.email = { $regex: filter.email, $options: 'i' };
+  }
 
   const [contactsCount, contacts] = await Promise.all([
     ContactsCollection.countDocuments(searchFilter),

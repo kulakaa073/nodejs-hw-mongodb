@@ -1,0 +1,76 @@
+tags:
+  - Contacts
+summary: Updates contact
+operationId: parchContact
+description: 'Updates a contact with payload'
+security:
+  - bearerAuth: []
+parameters:
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+requestBody:
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            description: "Contact's name"
+            type: string
+            example: 'John Doe'
+          phoneNumber:
+            description: "Contact's phone number"
+            type: string
+            example: '+1234567890'
+          email:
+            description: "Contact's email address"
+            type: string
+            format: email
+            example: 'contact@example.com'
+          isFavorite:
+            description: 'Whether the contact is marked as favorite'
+            type: boolean
+            example: false
+          contactType:
+            description: 'Type of contact (e.g., personal, work)'
+            type: string
+            enum: ['work', 'home', 'personal']
+            example: personal
+            default: 'personal'
+          photo:
+            description: "Contact's photo image file"
+            type: string
+            format: binary
+responses:
+  '201':
+    description: Updated a contact
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Successfully patched a contact!
+            data:
+              type: object
+              $ref: '../../../components/schemas/contact.yaml'
+  '401':
+    $ref: '../../../components/responses/401.yaml'
+  '400':
+    $ref: '../../../components/responses/400.yaml'
+  '404':
+    $ref: '../../../components/responses/404.yaml'
+  '500':
+    $ref: '../../../components/responses/500.yaml'

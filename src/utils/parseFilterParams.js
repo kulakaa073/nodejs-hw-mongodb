@@ -7,7 +7,7 @@ const parseContactType = (type) => {
   if (isType(type)) return type;
 };
 
-const parseNumber = (number) => {
+/* const parseNumber = (number) => {
   const isString = typeof number === 'string';
   if (!isString) return;
 
@@ -17,7 +17,7 @@ const parseNumber = (number) => {
   }
 
   return parsedNumber;
-};
+}; */
 
 const parseBoolean = (value) => {
   if (value === 'true') return true;
@@ -26,13 +26,27 @@ const parseBoolean = (value) => {
 };
 
 export const parseFilterParams = (query) => {
-  const { isFavourite, type } = query;
+  const { isFavourite, type, name, phoneNumber, email } = query;
 
   const parsedIsFavourite = parseBoolean(isFavourite);
   const parsedContactType = parseContactType(type);
 
-  return {
+  const filter = {
     isFavourite: parsedIsFavourite,
     contactType: parsedContactType,
   };
+
+  if (typeof name === 'string' && name.trim() !== '') {
+    filter.name = name.trim();
+  }
+
+  if (typeof phoneNumber === 'string' && name.trim() !== '') {
+    filter.phoneNumber = name.trim();
+  }
+
+  if (typeof email === 'string' && name.trim() !== '') {
+    filter.email = name.trim();
+  }
+
+  return filter;
 };

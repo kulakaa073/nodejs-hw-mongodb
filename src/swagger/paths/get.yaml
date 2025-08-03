@@ -1,0 +1,18 @@
+tags:
+  - Home
+summary: Home page
+operationId: homePage
+description: 'Home page of the API'
+responses:
+  '200':
+    description: 'Home page response'
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              example: 'Welcome to MongoDB test API! OpenAPI documentation is available at http://localhost:3000/api-docs'
+  '500':
+    $ref: '../../../components/responses/500.yaml'
